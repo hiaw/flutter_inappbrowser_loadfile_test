@@ -23,11 +23,17 @@ class _MyAppState extends State<MyApp> {
           decoration:
               BoxDecoration(border: Border.all(color: Colors.blueAccent)),
           child: InAppWebView(
-            initialUrl: "https://flutter.io/",
+            initialFile: "assets/index.html",
             initialHeaders: {},
             initialOptions: {},
             onWebViewCreated: (InAppWebViewController controller) {
               webView = controller;
+            },
+            onLoadError: (InAppWebViewController controller, String url,
+                int code, String message) {
+              print(message);
+              print(code);
+              print(url);
             },
           ),
         ),
