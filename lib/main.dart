@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inappbrowser/flutter_inappbrowser.dart';
 
-void main() => runApp(MyApp());
+InAppLocalhostServer localhostServer = InAppLocalhostServer();
+
+Future main() async {
+  await localhostServer.start();
+  runApp(MyApp());
+}
 
 class MyApp extends StatefulWidget {
   @override
@@ -18,24 +23,34 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Inline WebView example app'),
         ),
-        body: Container(
-          margin: const EdgeInsets.all(10.0),
-          decoration:
-              BoxDecoration(border: Border.all(color: Colors.blueAccent)),
-          child: InAppWebView(
-            initialFile: "assets/index.html",
-            initialHeaders: {},
-            initialOptions: {},
-            onWebViewCreated: (InAppWebViewController controller) {
-              webView = controller;
-            },
-            onLoadError: (InAppWebViewController controller, String url,
-                int code, String message) {
-              print(message);
-              print(code);
-              print(url);
-            },
-          ),
+        body: Column(
+          children: <Widget>[
+            RaisedButton(
+              onPressed: () async {
+                await webView.loadUrl("http://localhost:8080/assets/lite.html");
+              },
+            ),
+            Expanded(
+              child: Container(
+                margin: const EdgeInsets.all(10.0),
+                decoration:
+                    BoxDecoration(border: Border.all(color: Colors.blueAccent)),
+                child: InAppWebView(
+                  onWebViewCreated: (InAppWebViewController controller) {
+                    webView = controller;
+                  },
+                  onProgressChanged:
+                      (InAppWebViewController controller, int progress) {
+                    print(progress);
+                  },
+                  onLoadError: (InAppWebViewController controller, String url,
+                      int code, String message) {
+                    print('$url: $code \n $message');
+                  },
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
