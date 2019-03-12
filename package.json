@@ -1,0 +1,11 @@
+{
+  "name": "chemical_viewer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/hiaw/flutter_inappbrowser_loadfile_test.git",
+  "author": "Daniel Chong <danielgq.chong@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "wc": "find . -name \"*.dart\" | xargs cat | wc -c"
+  }
+}
