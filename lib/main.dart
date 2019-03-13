@@ -25,15 +25,26 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Inline WebView example app'),
         ),
-        body: Container(
-          margin: const EdgeInsets.all(10.0),
-          decoration:
-              BoxDecoration(border: Border.all(color: Colors.blueAccent)),
-          child: InAppWebView(
-            onWebViewCreated: (InAppWebViewController controller) {
-              webView = controller;
-            },
-          ),
+        body: Column(
+          children: <Widget>[
+            RaisedButton(
+              onPressed: () {
+                webView.reload();
+              },
+            ),
+            Expanded(
+              child: Container(
+                margin: const EdgeInsets.all(10.0),
+                decoration:
+                    BoxDecoration(border: Border.all(color: Colors.blueAccent)),
+                child: InAppWebView(
+                  onWebViewCreated: (InAppWebViewController controller) {
+                    webView = controller;
+                  },
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
