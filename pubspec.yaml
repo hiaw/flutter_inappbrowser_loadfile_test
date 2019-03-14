@@ -18,3 +18,10 @@ dev_dependencies:
 flutter:
   assets:
     - assets/
+    - assets/j2s/img/
+    - assets/j2s/core/
+    - assets/j2s/J/adapter/readers/cif
+    - assets/j2s/J/render/
+    - assets/j2s/J/shape/
+    - assets/j2s/javajs/api/
+    - assets/j2s/JU/
